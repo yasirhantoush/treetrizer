@@ -2,7 +2,8 @@ var _ = require('lodash');
 
 module.exports = {
 	isValid: function(path){
-		return (path.match(/^\d+(\.\d+)*$/g) || []).length > 0;
+		var length = (path.match(/^\d+(\.\d+)*$/g) || []).length
+		return length > 0 ? true : false;
 	},
 
 	getParent: function (path) {
