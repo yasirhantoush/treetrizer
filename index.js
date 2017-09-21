@@ -1,4 +1,6 @@
-var _ = require('lodash');
+var _filter = require('lodash.filter')
+var _isEmpty = require('lodash.isEmpty')
+var _each = require('lodash.foreach')
 
 module.exports = {
 	isValid: function(path){
@@ -101,16 +103,16 @@ module.exports = {
 				parent[pathProperty] = rootPath;
 			}
 
-			var children = _.filter( records, function(child){ return module.exports.getParent(child[pathProperty]) == parent[pathProperty]; });
+			var children = _filter( records, function(child){ return module.exports.getParent(child[pathProperty]) == parent[pathProperty]; });
 
-			if( !_.isEmpty( children )  ){
+			if( !_isEmpty( children )  ){
 					if( parent[pathProperty] == rootPath ){
 						tree = children;
 					} else {
 						parent[childrenProperty] = children;
 						parent['loaded'] = false;
 					}
-					_.each( children, function( child ){ module.exports.unflatten( records, pathProperty, rootPath, childrenProperty, child ) } );
+					_each( children, function( child ){ module.exports.unflatten( records, pathProperty, rootPath, childrenProperty, child ) } );
 			}
 
 			return tree;
