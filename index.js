@@ -1,6 +1,6 @@
 var find = require('lodash/find');
 var isEmpty = require('lodash/isEmpty');
-var each = require('lodash/foreach');
+var each = require('lodash/each');
 
 module.exports = {
 	isValid: function(path){
